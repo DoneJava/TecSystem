@@ -1,0 +1,94 @@
+﻿.task-card {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+    .task-card .card-body {
+        padding: 10px;
+    }
+
+    .task-card .card-title {
+        font-weight: bold;
+        font-size: 1.25rem;
+    }
+
+    .task-card .card-text {
+        margin: 10px 0;
+    }
+
+    .task-card .float-right {
+        font-size: 0.875rem;
+        color: #888;
+    }
+
+    .task-card .d-flex {
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .task-card .form-check-input {
+        margin-right: 10px;
+        margin-top: -5px;
+    }
+
+    .task-card .btn-outline-danger {
+        border: none;
+        background-color: transparent;
+        color: #d9534f;
+        padding: 0;
+    }
+
+        .task-card .btn-outline-danger:hover {
+            color: #c9302c;
+        }
+
+.input-group .form-control {
+    width: calc(100% - 100px);
+}
+
+.input-group .input-group-append {
+    width: 100px;
+}
+
+.selected-list {
+    font-weight: bold;
+    color: black !important;
+}
+
+.btn-excluir {
+    font-weight: normal !important;
+    padding: 2px 5px;
+    font-size: 0.875rem;
+    line-height: 1.5;
+}
+
+#listaContainer {
+    max-height: 500px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+#tarefasContainer {
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.lista-item a {
+    color: black !important;
+}
+
+    .lista-item a:hover {
+        color: black !important;
+    }
+
+    .lista-item a.selected-list {
+        font-weight: bold;
+        color: black !important;
+    }
+
+        .lista-item a.selected-list + .excluirListaForm .btn-excluir {
+            font-weight: normal !important;
+        }

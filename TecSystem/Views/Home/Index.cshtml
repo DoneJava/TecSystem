@@ -1,0 +1,109 @@
+﻿@model IEnumerable<TecSystem.Models.Lista>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Your Project Name</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/custom.css" />
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <nav id="sidebar" class="col-md-3 bg-light sidebar">
+                <div class="sidebar-sticky" id="listaContainer">
+                    @Html.Partial("_ListaPartial", Model)
+                </div>
+            </nav>
+            <main role="main" class="col-md-9 px-4">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Tarefas</h1>
+                    <div class="btn-toolbar mb-2 mb-md-0">
+                        <div class="btn-group mr-2">
+                            <button type="button" class="btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#adicionarTarefaModal" id="botaoAdicionarTarefa" disabled>Adicionar Tarefa</button>
+                        </div>
+                    </div>
+                </div>
+                <div id="tarefasContainer">
+                    <!-- Aqui será carregado o conteúdo das tarefas via AJAX -->
+                </div>
+                <!-- Modal Editar Tarefa -->
+                <div class="modal fade" id="editarTarefaModal" tabindex="-1" role="dialog" aria-labelledby="editarTarefaModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="editarTarefaModalLabel">Editar Tarefa</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <form id="editarTarefaForm">
+                                <div class="modal-body">
+                                    <input type="hidden" name="id" id="editarTarefaId">
+                                    <div class="form-group">
+                                        <label for="editarTitulo">Título</label>
+                                        <input type="text" class="form-control" name="titulo" id="editarTitulo" required maxlength="50">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="editarDescricao">Descrição</label>
+                                        <textarea class="form-control" name="descricao" id="editarDescricao" required maxlength="1000"></textarea>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                    <button type="submit" class="btn btn-primary">Salvar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal Adicionar Tarefa -->
+                <div class="modal fade" id="adicionarTarefaModal" tabindex="-1" role="dialog" aria-labelledby="adicionarTarefaModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="adicionarTarefaModalLabel">Adicionar Tarefa</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <form id="addTarefaForm">
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label for="titulo">Título</label>
+                                        <input type="text" class="form-control" name="titulo" id="titulo" required maxlength="50">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="descricao">Descrição</label>
+                                        <textarea class="form-control" name="descricao" id="descricao" required maxlength="1000"></textarea>
+                                    </div>
+                                    <input type="hidden" name="listaNome" id="listaNomeSelecionada" required>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                    <button type="submit" class="btn btn-primary" id="adicionarTarefaBotao">Adicionar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="~/js/index.js"></script>
+</body>
+</html>

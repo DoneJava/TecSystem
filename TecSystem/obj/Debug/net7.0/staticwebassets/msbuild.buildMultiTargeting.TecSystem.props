@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\TecSystem.props" />
+</Project>
