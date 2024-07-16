@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "IOrjycBAc846tz9CXmdIquS7A1h1pezxzyx+bCOJyMIlxJR6sjXR9AM7eZOQigpU9XmF/1CtLBZ5DgW2PHZmzw==",
+  "dgSpecHash": "dTs3Xbia7/2qy1NaffD5L1l2avlqmMFt1vRc8LGKoh5VCpFm4WPZgrEbrQu8ylg+PWa8G57EmWG9uYQkH1jOFA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\conta\\Desktop\\apresentação\\TecSystem\\TecSystem\\TecSystem.csproj",
+  "projectFilePath": "C:\\Users\\conta\\Desktop\\Testes\\TecSystem\\TecSystem\\TecSystem.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\conta\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\conta\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.20\\microsoft.entityframeworkcore.7.0.20.nupkg.sha512",

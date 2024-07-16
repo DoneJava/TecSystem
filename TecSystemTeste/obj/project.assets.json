@@ -1838,11 +1838,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\conta\\Desktop\\apresentação\\TecSystem\\TecSystemTeste\\TecSystemTeste.csproj",
+      "projectUniqueName": "C:\\Users\\conta\\Desktop\\Testes\\TecSystem\\TecSystemTeste\\TecSystemTeste.csproj",
       "projectName": "TecSystemTeste",
-      "projectPath": "C:\\Users\\conta\\Desktop\\apresentação\\TecSystem\\TecSystemTeste\\TecSystemTeste.csproj",
+      "projectPath": "C:\\Users\\conta\\Desktop\\Testes\\TecSystem\\TecSystemTeste\\TecSystemTeste.csproj",
       "packagesPath": "C:\\Users\\conta\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\conta\\Desktop\\apresentação\\TecSystem\\TecSystemTeste\\obj\\",
+      "outputPath": "C:\\Users\\conta\\Desktop\\Testes\\TecSystem\\TecSystemTeste\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -1864,8 +1864,8 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Users\\conta\\Desktop\\apresentação\\TecSystem\\TecSystem\\TecSystem.csproj": {
-              "projectPath": "C:\\Users\\conta\\Desktop\\apresentação\\TecSystem\\TecSystem\\TecSystem.csproj"
+            "C:\\Users\\conta\\Desktop\\Testes\\TecSystem\\TecSystem\\TecSystem.csproj": {
+              "projectPath": "C:\\Users\\conta\\Desktop\\Testes\\TecSystem\\TecSystem\\TecSystem.csproj"
             }
           }
         }
