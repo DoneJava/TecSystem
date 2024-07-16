@@ -9,41 +9,41 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = TecSystem
 build_property.RootNamespace = TecSystem
-build_property.ProjectDir = C:\Users\conta\Desktop\TecSystem\TecSystem\TecSystem\
+build_property.ProjectDir = C:\Users\conta\Desktop\apresentação\TecSystem\TecSystem\
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\conta\Desktop\TecSystem\TecSystem\TecSystem
+build_property.MSBuildProjectDirectory = C:\Users\conta\Desktop\apresentação\TecSystem\TecSystem
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/conta/Desktop/TecSystem/TecSystem/TecSystem/Views/Home/Index.cshtml]
+[C:/Users/conta/Desktop/apresentação/TecSystem/TecSystem/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/conta/Desktop/TecSystem/TecSystem/TecSystem/Views/Home/_ListaPartial.cshtml]
+[C:/Users/conta/Desktop/apresentação/TecSystem/TecSystem/Views/Home/_ListaPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxfTGlzdGFQYXJ0aWFsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/conta/Desktop/TecSystem/TecSystem/TecSystem/Views/Home/_TarefasPartial.cshtml]
+[C:/Users/conta/Desktop/apresentação/TecSystem/TecSystem/Views/Home/_TarefasPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxfVGFyZWZhc1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/conta/Desktop/TecSystem/TecSystem/TecSystem/Views/Shared/Error.cshtml]
+[C:/Users/conta/Desktop/apresentação/TecSystem/TecSystem/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/conta/Desktop/TecSystem/TecSystem/TecSystem/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/conta/Desktop/apresentação/TecSystem/TecSystem/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/conta/Desktop/TecSystem/TecSystem/TecSystem/Views/_ViewImports.cshtml]
+[C:/Users/conta/Desktop/apresentação/TecSystem/TecSystem/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/conta/Desktop/TecSystem/TecSystem/TecSystem/Views/_ViewStart.cshtml]
+[C:/Users/conta/Desktop/apresentação/TecSystem/TecSystem/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/conta/Desktop/TecSystem/TecSystem/TecSystem/Views/Shared/_Layout.cshtml]
+[C:/Users/conta/Desktop/apresentação/TecSystem/TecSystem/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-dlj8icxj1c

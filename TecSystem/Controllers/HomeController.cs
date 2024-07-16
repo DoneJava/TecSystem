@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TecSystem.Models;
 using TecSystem.Service.Interface;
+using System;
+using System.Collections.Generic;
 
 namespace TecSystem.Controllers
 {
@@ -30,7 +32,7 @@ namespace TecSystem.Controllers
                     ModelState.AddModelError(string.Empty, resultado.Mensagem ?? string.Empty);
                     return RedirectToAction(nameof(Index));
                 }
-                List<Lista>? listas = resultado.Objeto as List<Lista>;
+                List<Lista> listas = resultado.Objeto as List<Lista>;
                 return View(listas);
             }
             catch (Exception ex)
@@ -49,7 +51,7 @@ namespace TecSystem.Controllers
                 {
                     return BadRequest(resultado.Mensagem ?? "Erro ao obter listas.");
                 }
-                List<Lista>? listas = resultado.Objeto as List<Lista>;
+                List<Lista> listas = resultado.Objeto as List<Lista>;
                 return Json(listas);
             }
             catch (Exception ex)
@@ -63,12 +65,13 @@ namespace TecSystem.Controllers
         {
             try
             {
-                RetornoPadrao resultado = _tarefaService.ObterTarefas(new Lista { Nome = listaNome });
+                Lista lista = new Lista(0, listaNome);
+                RetornoPadrao resultado = _tarefaService.ObterTarefas(lista);
                 if (!resultado.Sucesso)
                 {
                     return BadRequest(resultado.Mensagem ?? "Erro ao obter tarefas.");
                 }
-                List<Tarefa>? tarefas = resultado.Objeto as List<Tarefa>;
+                List<Tarefa> tarefas = resultado.Objeto as List<Tarefa>;
                 return PartialView("_TarefasPartial", tarefas);
             }
             catch (Exception ex)
@@ -82,7 +85,7 @@ namespace TecSystem.Controllers
         {
             try
             {
-                Lista novaLista = new Lista { Nome = nome };
+                Lista novaLista = new Lista(0, nome);
                 RetornoPadrao resultado = _listaService.AdicionarLista(novaLista);
 
                 if (!resultado.Sucesso)
@@ -90,7 +93,7 @@ namespace TecSystem.Controllers
                     return BadRequest(resultado.Mensagem ?? "Erro ao adicionar lista.");
                 }
 
-                List<Lista>? listas = _listaService.ObterListas().Objeto as List<Lista>;
+                List<Lista> listas = _listaService.ObterListas().Objeto as List<Lista>;
                 return PartialView("_ListaPartial", listas);
             }
             catch (Exception ex)
@@ -104,7 +107,8 @@ namespace TecSystem.Controllers
         {
             try
             {
-                Tarefa novaTarefa = new Tarefa { Titulo = titulo, Descricao = descricao, listaNome = listaNome, DataConclusao = DateTime.Now, Concluida = false };
+                Lista lista = _listaService.ObterLista(listaNome).Objeto as Lista;
+                Tarefa novaTarefa = new Tarefa(0, titulo, descricao, DateTime.Now.AddDays(1), listaNome, lista);
                 RetornoPadrao resultado = _tarefaService.AdicionarTarefa(novaTarefa);
 
                 if (!resultado.Sucesso)
@@ -112,8 +116,8 @@ namespace TecSystem.Controllers
                     return BadRequest(resultado.Mensagem ?? "Erro ao adicionar tarefa.");
                 }
 
-                RetornoPadrao resultadoListas = _tarefaService.ObterTarefas(new Lista { Nome = listaNome });
-                List<Tarefa>? tarefas = resultadoListas.Objeto as List<Tarefa>;
+                RetornoPadrao resultadoListas = _tarefaService.ObterTarefas(lista);
+                List<Tarefa> tarefas = resultadoListas.Objeto as List<Tarefa>;
                 return PartialView("_TarefasPartial", tarefas);
             }
             catch (Exception ex)
@@ -133,7 +137,7 @@ namespace TecSystem.Controllers
                 {
                     return BadRequest(resultado.Mensagem ?? "Erro ao excluir tarefa.");
                 }
-                List<Tarefa>? tarefas = resultado.Objeto as List<Tarefa>;
+                List<Tarefa> tarefas = resultado.Objeto as List<Tarefa>;
                 return PartialView("_TarefasPartial", tarefas);
             }
             catch (Exception ex)
@@ -153,7 +157,7 @@ namespace TecSystem.Controllers
                 {
                     return BadRequest(resultado.Mensagem ?? "Erro ao mudar status da tarefa.");
                 }
-                List<Tarefa>? tarefas = resultado.Objeto as List<Tarefa>;
+                List<Tarefa> tarefas = resultado.Objeto as List<Tarefa>;
                 return PartialView("_TarefasPartial", tarefas);
             }
             catch (Exception ex)
@@ -174,7 +178,7 @@ namespace TecSystem.Controllers
                     return BadRequest(resultado.Mensagem ?? "Erro ao excluir lista.");
                 }
 
-                List<Lista>? listas = _listaService.ObterListas().Objeto as List<Lista>;
+                List<Lista> listas = _listaService.ObterListas().Objeto as List<Lista>;
                 return PartialView("_ListaPartial", listas);
             }
             catch (Exception ex)
@@ -188,7 +192,8 @@ namespace TecSystem.Controllers
         {
             try
             {
-                Tarefa tarefaEditada = new Tarefa { Id = id, Titulo = titulo, Descricao = descricao };
+                Tarefa tarefa = _tarefaService.ObterTarefa(id).Objeto as Tarefa;
+                Tarefa tarefaEditada = new Tarefa(id, titulo, descricao, DateTime.Now.AddDays(1), tarefa.ListaNome, null);
                 RetornoPadrao resultado = _tarefaService.EditarTarefa(tarefaEditada);
 
                 if (!resultado.Sucesso)
@@ -196,7 +201,7 @@ namespace TecSystem.Controllers
                     return BadRequest(resultado.Mensagem ?? "Erro ao editar tarefa.");
                 }
 
-                List<Tarefa>? tarefas = resultado.Objeto as List<Tarefa>;
+                List<Tarefa> tarefas = resultado.Objeto as List<Tarefa>;
                 return PartialView("_TarefasPartial", tarefas);
             }
             catch (Exception ex)
@@ -204,7 +209,6 @@ namespace TecSystem.Controllers
                 return StatusCode(500, "Erro interno do servidor: " + ex.Message);
             }
         }
-
         #endregion Fim Métodos
     }
 }

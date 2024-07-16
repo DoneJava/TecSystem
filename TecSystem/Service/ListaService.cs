@@ -1,20 +1,21 @@
 ﻿using TecSystem.Models;
 using TecSystem.Service.Interface;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace TecSystem.Service
 {
     public class ListaService : IListaService
     {
         #region Atributos
-        private readonly List<Lista> _listas;
-        private readonly ITarefaService _tarefaService;
+        private readonly ApplicationDbContext _context;
         #endregion Fim Atributos
 
         #region Construtores
-        public ListaService(ITarefaService tarefaService)
+        public ListaService(ApplicationDbContext context)
         {
-            _tarefaService = tarefaService;
-            _listas = new();
+            _context = context;
         }
         #endregion Fim Construtores
 
@@ -24,14 +25,14 @@ namespace TecSystem.Service
             RetornoPadrao retorno = new();
             try
             {
-                novaLista.Tarefas = new List<Tarefa>();
-                if (_listas.Any(x => x.Nome.Equals(novaLista.Nome, StringComparison.OrdinalIgnoreCase)))
+                if (_context.Listas.Any(x => x.Nome == novaLista.Nome))
                 {
                     retorno.Sucesso = false;
                     retorno.Mensagem = "Nome da lista já existe. Por favor, dê outro nome à lista.";
                     return retorno;
                 }
-                _listas.Add(novaLista);
+                _context.Listas.Add(novaLista);
+                _context.SaveChanges();
                 retorno.Sucesso = true;
                 retorno.Mensagem = "Lista adicionada com sucesso.";
                 return retorno;
@@ -39,8 +40,7 @@ namespace TecSystem.Service
             catch (Exception ex)
             {
                 retorno.Sucesso = false;
-                retorno.Mensagem = @$"Houve um erro ao tentar adicionar a lista. 
-                                      Por favor, entre em contato com o setor do CPD e informe este erro: {ex.Message}";
+                retorno.Mensagem = $"Houve um erro ao tentar adicionar a lista. Por favor entre em contato com o setor do CPD e informe este erro: {ex.Message}";
                 return retorno;
             }
         }
@@ -50,23 +50,23 @@ namespace TecSystem.Service
             RetornoPadrao retorno = new();
             try
             {
-                Lista lista = _listas.Single(x => x.Nome.Equals(nome, StringComparison.OrdinalIgnoreCase));
-                if (!_listas.Any(x => x.Nome.Equals(nome, StringComparison.OrdinalIgnoreCase)))
+                Lista lista = _context.Listas.SingleOrDefault(x => x.Nome == nome);
+                if (lista == null)
                 {
-                    retorno.Sucesso = true;
+                    retorno.Sucesso = false;
                     retorno.Mensagem = "Essa lista não existe.";
                     return retorno;
                 }
 
-                if (_tarefaService.ObterTarefas(lista).Objeto is List<Tarefa> tarefas && tarefas.Any())
+                if (_context.Tarefas.Any(x => x.ListaNome == nome))
                 {
                     retorno.Sucesso = false;
                     retorno.Mensagem = "Essa lista tem tarefas atreladas a ela, portanto, não pode ser excluída.";
                     return retorno;
                 }
 
-                _listas.RemoveAll(x => x.Nome.Equals(lista.Nome, StringComparison.OrdinalIgnoreCase));
-
+                _context.Listas.Remove(lista);
+                _context.SaveChanges();
                 retorno.Sucesso = true;
                 retorno.Mensagem = "Lista excluída com sucesso.";
                 return retorno;
@@ -74,8 +74,7 @@ namespace TecSystem.Service
             catch (Exception ex)
             {
                 retorno.Sucesso = false;
-                retorno.Mensagem = @$"Houve um erro ao tentar excluir a lista. 
-                                      Por favor, entre em contato com o setor do CPD e informe este erro: {ex.Message}";
+                retorno.Mensagem = $"Houve um erro ao tentar excluir a lista. Por favor entre em contato com o setor do CPD e informe este erro: {ex.Message}";
                 return retorno;
             }
         }
@@ -85,15 +84,33 @@ namespace TecSystem.Service
             RetornoPadrao retorno = new();
             try
             {
+                List<Lista> listas = _context.Listas.ToList();
                 retorno.Sucesso = true;
-                retorno.Objeto = _listas.ToList();
+                retorno.Objeto = listas;
                 return retorno;
             }
             catch (Exception ex)
             {
                 retorno.Sucesso = false;
-                retorno.Mensagem = @$"Houve um erro ao tentar obter as listas. 
-                                      Por favor, entre em contato com o setor do CPD e informe este erro: {ex.Message}";
+                retorno.Mensagem = $"Houve um erro ao tentar obter as listas. Por favor entre em contato com o setor do CPD e informe este erro: {ex.Message}";
+                return retorno;
+            }
+        }
+
+        public RetornoPadrao ObterLista(string nomeLista)
+        {
+            RetornoPadrao retorno = new();
+            try
+            {
+                Lista listas = _context.Listas.Single(x => x.Nome == nomeLista);
+                retorno.Sucesso = true;
+                retorno.Objeto = listas;
+                return retorno;
+            }
+            catch (Exception ex)
+            {
+                retorno.Sucesso = false;
+                retorno.Mensagem = $"Houve um erro ao tentar obter as listas. Por favor entre em contato com o setor do CPD e informe este erro: {ex.Message}";
                 return retorno;
             }
         }
