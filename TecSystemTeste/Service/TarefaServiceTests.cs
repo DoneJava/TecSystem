@@ -43,21 +43,26 @@ namespace TecSystemTestes
         }
         #endregion
 
+        #region TearDown
+        [TearDown]
+        public void TearDown()
+        {
+            _context.Dispose();
+        }
+        #endregion
+
         #region EditarTarefa
         [Test]
         public void EditarTarefa_DeveEditarTarefa()
         {
-            // Arrange
-            var tarefaExistente = new Tarefa(1, "Título Original", "Descrição Original", System.DateTime.Now.AddDays(1), "Lista Teste", new Lista(1, "Lista Teste"));
+            Tarefa tarefaExistente = new Tarefa(1, "Título Original", "Descrição Original", System.DateTime.Now.AddDays(1), "Lista Teste", new Lista(1, "Lista Teste"));
             _context.Tarefas.Add(tarefaExistente);
             _context.SaveChanges();
 
-            var tarefaEditada = new Tarefa(1, "Título Editado", "Descrição Editada", System.DateTime.Now.AddDays(1), "Lista Teste", new Lista(1, "Lista Teste"));
+            Tarefa tarefaEditada = new Tarefa(1, "Título Editado", "Descrição Editada", System.DateTime.Now.AddDays(1), "Lista Teste", new Lista(1, "Lista Teste"));
 
-            // Act
             RetornoPadrao resultado = _tarefaService.EditarTarefa(tarefaEditada);
 
-            // Assert
             Assert.IsTrue(resultado.Sucesso);
             Assert.AreEqual("Tarefa editada com sucesso.", resultado.Mensagem);
         }
@@ -67,15 +72,12 @@ namespace TecSystemTestes
         [Test]
         public void ExcluirTarefa_DeveExcluirTarefa()
         {
-            // Arrange
-            var tarefaExistente = new Tarefa(1, "Título Original", "Descrição Original", System.DateTime.Now.AddDays(1), "Lista Teste", new Lista(1, "Lista Teste"));
+            Tarefa tarefaExistente = new Tarefa(1, "Título Original", "Descrição Original", System.DateTime.Now.AddDays(1), "Lista Teste", new Lista(1, "Lista Teste"));
             _context.Tarefas.Add(tarefaExistente);
             _context.SaveChanges();
 
-            // Act
             RetornoPadrao resultado = _tarefaService.ExcluirTarefa(1);
 
-            // Assert
             Assert.IsTrue(resultado.Sucesso);
             Assert.AreEqual("Tarefa excluída com sucesso.", resultado.Mensagem);
         }
@@ -85,15 +87,12 @@ namespace TecSystemTestes
         [Test]
         public void MudarStatusTarefa_DeveMudarStatus()
         {
-            // Arrange
-            var tarefaExistente = new Tarefa(1, "Título Original", "Descrição Original", System.DateTime.Now.AddDays(1), "Lista Teste", new Lista(1, "Lista Teste"));
+            Tarefa tarefaExistente = new Tarefa(1, "Título Original", "Descrição Original", System.DateTime.Now.AddDays(1), "Lista Teste", new Lista(1, "Lista Teste"));
             _context.Tarefas.Add(tarefaExistente);
             _context.SaveChanges();
 
-            // Act
             RetornoPadrao resultado = _tarefaService.MudarStatusTarefa(1);
 
-            // Assert
             Assert.IsTrue(resultado.Sucesso);
             Assert.AreEqual("Mudança de status realizada com sucesso.", resultado.Mensagem);
         }
@@ -103,16 +102,13 @@ namespace TecSystemTestes
         [Test]
         public void ObterTarefas_DeveRetornarTarefas()
         {
-            // Arrange
-            var lista = new Lista(1, "Lista Teste");
-            var tarefaExistente = new Tarefa(1, "Título Original", "Descrição Original", System.DateTime.Now.AddDays(1), "Lista Teste", lista);
+            Lista lista = new Lista(1, "Lista Teste");
+            Tarefa tarefaExistente = new Tarefa(1, "Título Original", "Descrição Original", System.DateTime.Now.AddDays(1), "Lista Teste", lista);
             _context.Tarefas.Add(tarefaExistente);
             _context.SaveChanges();
 
-            // Act
             RetornoPadrao resultado = _tarefaService.ObterTarefas(lista);
 
-            // Assert
             Assert.IsTrue(resultado.Sucesso);
             Assert.AreEqual(1, ((List<Tarefa>)resultado.Objeto).Count);
         }
@@ -122,12 +118,10 @@ namespace TecSystemTestes
         [Test]
         public void ObterTarefa_DeveRetornarTarefa()
         {
-            // Arrange
-            var tarefaExistente = new Tarefa(1, "Título Original", "Descrição Original", System.DateTime.Now.AddDays(1), "Lista Teste", new Lista(1, "Lista Teste"));
+            Tarefa tarefaExistente = new Tarefa(1, "Título Original", "Descrição Original", System.DateTime.Now.AddDays(1), "Lista Teste", new Lista(1, "Lista Teste"));
             _context.Tarefas.Add(tarefaExistente);
             _context.SaveChanges();
 
-            // Act
             RetornoPadrao resultado = _tarefaService.ObterTarefa(1);
 
             // Assert

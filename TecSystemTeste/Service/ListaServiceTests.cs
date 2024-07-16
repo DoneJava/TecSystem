@@ -43,6 +43,14 @@ namespace TecSystemTestes
         }
         #endregion
 
+        #region TearDown
+        [TearDown]
+        public void TearDown()
+        {
+            _context.Dispose();
+        }
+        #endregion
+
         #region ExcluirLista
         [Test]
         public void ExcluirLista_DeveExcluirLista()
